@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Parse JavaScript Todo App</title>
+    <title>Login Pattern</title>
     <link href="css/todos.css" media="all" rel="stylesheet" type="text/css"/>
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="js/underscore-1.1.6.js"></script>
@@ -85,6 +85,18 @@
 	<input class="edit" value="<%= content %>">
       </li>
     </script>
+
+
+  <script type="text/template" id="project-item-template">
+      <li class="<%= done ? 'completed' : '' %>">
+  <div class="view">
+    <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
+    <label class="todo-content"><%= content %></label>
+    <button class="todo-destroy"></button>
+  </div>
+  <input class="edit" value="<%= content %>">
+      </li>
+  </script>
 
     <script type="text/template" id="stats-template">
       <footer id="footer">

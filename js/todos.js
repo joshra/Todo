@@ -7,8 +7,8 @@ $(function() {
   Parse.$ = jQuery;
 
   // Initialize Parse with your Parse application javascript keys
-  Parse.initialize("your-application-id",
-                   "your-javascript-key");
+  Parse.initialize("GD0tCpziUxcfl9Lm8R6eEDw0PfAYXqu3ztcOmw7I",
+                   "U3Bg7e2crCgcyQsDCFS4CZgbBkdblIn5dzyyaNRX");
 
   // Todo Model
   // ----------
@@ -18,6 +18,27 @@ $(function() {
     // Default attributes for the todo.
     defaults: {
       content: "empty todo...",
+      done: false
+    },
+
+    // Ensure that each todo created has `content`.
+    initialize: function() {
+      if (!this.get("content")) {
+        this.set({"content": this.defaults.content});
+      }
+    },
+
+    // Toggle the `done` state of this todo item.
+    toggle: function() {
+      this.save({done: !this.get("done")});
+    }
+  });
+
+  var Todo = Parse.Object.extend("Project", {
+    // Default attributes for the todo.
+    defaults: {
+      name: "empty",
+      content: "empty project...",
       done: false
     },
 
@@ -83,7 +104,7 @@ $(function() {
     tagName:  "li",
 
     // Cache the template function for a single item.
-    template: _.template($('#item-template').html()),
+    template: _.template($('#project-item-template').html()),
 
     // The DOM events specific to an item.
     events: {
